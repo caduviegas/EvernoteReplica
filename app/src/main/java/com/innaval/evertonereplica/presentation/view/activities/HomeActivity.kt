@@ -1,4 +1,4 @@
-package com.innaval.evertonereplica.view.activities
+package com.innaval.evertonereplica.presentation.view.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
