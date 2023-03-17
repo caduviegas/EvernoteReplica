@@ -1,0 +1,38 @@
+package com.innaval.evertonereplica.presentation.view.adapters
+
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.innaval.evertonereplica.R
+import com.innaval.evertonereplica.data.model.Note
+import com.innaval.evertonereplica.databinding.ListItemNoteBinding
+
+class NoteAdapter(private val notes: List<Note>, val onClickListener: (Note) -> Unit) :
+    RecyclerView.Adapter<NoteAdapter.NoteView>() {
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteView =
+        NoteView(
+            DataBindingUtil.inflate(
+                LayoutInflater.from(parent.context),
+                R.layout.list_item_note,
+                parent,
+                false
+            )
+        )
+
+    override fun onBindViewHolder(holder: NoteView, position: Int) {
+        val note = notes[position]
+        holder.binding.note = note
+        holder.binding.root.setOnClickListener {
+            onClickListener.invoke(note)
+        }
+    }
+
+    override fun getItemCount(): Int = notes.size
+
+    inner class NoteView constructor(val binding: ListItemNoteBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+    }
+}
